@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Санаторий «Лесная жемчужина» — отдых и оздоровление</title>
+    <style>
+        /* ===== Обнуление и базовые стили ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-dark: #1f4a38;
+            --green-main: #2e7d5b;
+            --green-light: #eaf4ef;
+            --accent: #d9a441;
+            --text-dark: #22332b;
+            --text-light: #f7faf8;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--green-main);
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        /* ===== Шапка сайта ===== */
+        .site-header {
+            background-color: var(--green-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .logo-mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .logo-text strong {
+            display: block;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.75;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 34px;
+        }
+
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            padding: 8px 2px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+
+        .main-nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* ===== Главный блок (hero) ===== */
+        .hero {
+            background: linear-gradient(rgba(31, 74, 56, 0.75), rgba(31, 74, 56, 0.75)),
+                        url("https://picsum.photos/id/1018/1600/900") center / cover no-repeat;
+            min-height: 560px;
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .hero-motto {
+            font-style: italic;
+            font-size: 18px;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            margin-bottom: 36px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 42px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: #c08f2e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--green-dark);
+        }
+
+        /* ===== Преимущества (flex) ===== */
+        .features {
+            background-color: var(--green-light);
+        }
+
+        .features-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .feature-card {
+            flex: 1 1 0;
+            max-width: 340px;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 40px 28px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(31, 74, 56, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 30px rgba(31, 74, 56, 0.18);
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: var(--green-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #5c6f66;
+        }
+
+        /* ===== Программы (grid) ===== */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .program-card {
+            background-color: var(--white);
+            border: 1px solid #e2ebe6;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(31, 74, 56, 0.15);
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .program-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .program-body h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .program-body p {
+            font-size: 15px;
+            color: #5c6f66;
+            flex-grow: 1;
+        }
+
+        .program-price {
+            margin-top: 16px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--green-main);
+        }
+
+        .program-price small {
+            font-size: 13px;
+            font-weight: 400;
+            color: #8a9a91;
+        }
+
+        /* ===== Блок «О санатории» (текст + фото) ===== */
+        .about {
+            background-color: var(--green-light);
+        }
+
+        .about-inner {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text,
+        .about-photo {
+            flex: 1 1 0;
+        }
+
+        .about-photo {
+            max-width: 480px;
+        }
+
+        .about-photo img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(31, 74, 56, 0.15);
+        }
+
+        .about-text h2 {
+            text-align: left;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 22px;
+        }
+
+        .about-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .about-list li::before {
+            content: "✔";
+            color: var(--green-main);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ===== Форма бронирования ===== */
+        .booking {
+            background: linear-gradient(rgba(31, 74, 56, 0.9), rgba(31, 74, 56, 0.9)),
+                        url("https://picsum.photos/id/1040/1600/700") center / cover no-repeat;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .booking .section-subtitle {
+            color: var(--accent);
+        }
+
+        .booking-form {
+            max-width: 620px;
+            margin: 0 auto;
+            display: flex;
+            gap: 16px;
+        }
+
+        .booking-form input {
+            flex: 1 1 0;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .booking-form input:focus {
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        /* ===== Подвал ===== */
+        .site-footer {
+            background-color: #152e24;
+            color: #a8bfb4;
+            padding: 44px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-contacts a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contacts a:hover {
+            color: var(--accent);
+        }
+
+        .footer-copy {
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#">
+                <span class="logo-mark">🌲</span>
+                <span class="logo-text">
+                    <strong>Лесная жемчужина</strong>
+                    <span>санаторий</span>
+                </span>
+            </a>
+            <nav class="main-nav" aria-label="Главное меню">
+                <ul>
+                    <li><a href="#about">О санатории</a></li>
+                    <li><a href="#programs">Программы</a></li>
+                    <li><a href="#booking">Бронирование</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Отдых, который лечит</h1>
+                <p class="hero-motto">«Природа, тишина и забота — три составляющих вашего здоровья»</p>
+                <a class="btn btn-primary" href="#booking">Забронировать путёвку</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features">
+        <div class="container">
+            <h2>Почему выбирают нас</h2>
+            <p class="section-subtitle">Наши преимущества</p>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Лечебная база</h3>
+                    <p>Собственный диагностический центр, минеральные воды и более 30 видов процедур.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🌳</div>
+                    <h3>Чистый воздух</h3>
+                    <p>Территория 25 гектаров соснового леса вдали от городской суеты и шума.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Диетическое питание</h3>
+                    <p>Меню от профессионального диетолога с индивидуальным подбором рациона.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Программы -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2>Программы отдыха</h2>
+            <p class="section-subtitle">Выберите свой формат</p>
+            <div class="programs-grid">
+                <article class="program-card">
+                    <img src="https://picsum.photos/id/152/600/400" alt="Программа «Здоровье и релакс»">
+                    <div class="program-body">
+                        <h3>Здоровье и релакс</h3>
+                        <p>Комплекс процедур для восстановления сил: бассейн с минеральной водой, массаж, СПА-обёртывания.</p>
+                        <p class="program-price">от 4 900 ₽ <small>/ сутки</small></p>
+                    </div>
+                </article>
+                <article class="program-card">
+                    <img src="https://picsum.photos/id/425/600/400" alt="Программа «Сердце и сосуды»">
+                    <div class="program-body">
+                        <h3>Сердце и сосуды</h3>
+                        <p>Специальная кардиологическая программа с контролем показателей и наблюдением врача.</p>
+                        <p class="program-price">от 5 700 ₽ <small>/ сутки</small></p>
+                    </div>
+                </article>
+                <article class="program-card">
+                    <img src="https://picsum.photos/id/429/600/400" alt="Программа «Семейный отдых»">
+                    <div class="program-body">
+                        <h3>Семейный отдых</h3>
+                        <p>Детская анимация, игровая площадка, семейные номера и экскурсии по окрестностям.</p>
+                        <p class="program-price">от 3 800 ₽ <small>/ сутки</small></p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- О санатории -->
+    <section class="about" id="about">
+        <div class="container about-inner">
+            <div class="about-text">
+                <h2>О санатории</h2>
+                <p class="section-subtitle" style="text-align: left;">Заботимся о вашем здоровье с 1978 года</p>
+                <p>Санаторий «Лесная жемчужина» расположен на берегу живописного озера среди соснового бора. Мы объединяем классические методы лечения и современные медицинские технологии.</p>
+                <ul class="about-list">
+                    <li>200 комфортабельных номеров трёх категорий</li>
+                    <li>Лечебно-диагностический центр полного цикла</li>
+                    <li>Круглосуточное медицинское сопровождение</li>
+                    <li>Собственный бювет с минеральной водой</li>
+                </ul>
+            </div>
+            <div class="about-photo">
+                <img src="https://picsum.photos/id/1036/800/600" alt="Корпус санатория среди соснового леса">
+            </div>
+        </div>
+    </section>
+
+    <!-- Бронирование -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <h2>Бронирование</h2>
+            <p class="section-subtitle">Оставьте телефон — подберём программу</p>
+            <form class="booking-form" action="#" method="get">
+                <input type="tel" name="phone" placeholder="Ваш номер телефона" aria-label="Номер телефона" required>
+                <button class="btn btn-primary" type="submit">Жду звонка</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <a class="logo" href="#" style="color: var(--text-light);">
+                <span class="logo-mark">🌲</span>
+                <span class="logo-text">
+                    <strong>Лесная жемчужина</strong>
+                    <span>санаторий</span>
+                </span>
+            </a>
+            <div class="footer-contacts">
+                <a href="tel:+375212000000">+375 (212) 00-00-00</a><br>
+                <a href="mailto:info@sanatorium.by">info@sanatorium.by</a>
+            </div>
+            <p class="footer-copy">© 2026 Санаторий «Лесная жемчужина»</p>
+        </div>
+    </footer>
+
+</body>
+</html>
